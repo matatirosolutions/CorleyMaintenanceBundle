@@ -1,0 +1,23 @@
+{
+    "name": "corley/maintenance-bundle",
+    "type": "symfony-bundle",
+    "description": "Corley Maintenance Bundle",
+    "keywords": ["Maintenance management"],
+    "license": "MIT",
+    "autoload": {
+        "psr-0": { "Corley\\MaintenanceBundle": "" }
+    },
+    "target-dir": "Corley/MaintenanceBundle",
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "~2.1",
+        "symfony/form": "~2.1",
+        "symfony/security-bundle": "~2.1"
+    },
+    "require-dev": {
+        "symfony/yaml": "~2.1",
+        "symfony/validator": "~2.1",
+        "symfony/finder": "~2.1",
+        "symfony/console": "~2.1"
+    }
+}
