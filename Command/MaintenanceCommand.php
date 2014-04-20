@@ -1,13 +1,23 @@
 <?php
 namespace Corley\MaintenanceBundle\Command;
 
+use Corley\MaintenanceBundle\Maintenance\Runner;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class MaintenanceCommand extends ContainerAwareCommand
+class MaintenanceCommand extends Command
 {
+    private $runner;
+
+    public function __construct(Runner $runner)
+    {
+        parent::__construct(null);
+        $this->runner = $runner;
+    }
+
     protected function configure()
     {
         $this
@@ -31,6 +41,8 @@ EOF
         if ($status != 'on' && $status != 'off') {
             throw new \InvalidArgumentException("You have to use 'on' or 'off'");
         }
+
+        $this->runner->enableMaintenance(($status == 'off') ? false : true);
     }
 
     /**
