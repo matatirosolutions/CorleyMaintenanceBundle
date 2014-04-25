@@ -5,6 +5,9 @@ mode will cut off all requests and it will replies with a static html file and a
 
 Those conditions will ensure that a load balancer cut an instance off during a maintenance
 
+  * Develop
+    * [![Build Status](https://travis-ci.org/wdalmut/CorleyMaintenanceBundle.svg?branch=develop)](https://travis-ci.org/wdalmut/CorleyMaintenanceBundle)
+
 ## Install
 
 In your `composer.json` add the requirement
