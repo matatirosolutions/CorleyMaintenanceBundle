@@ -1,0 +1,28 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="corley_maintenance.strategy.symlink"
+            class="Corley\MaintenanceBundle\Maintenance\Strategy\SymlinkStrategy" />
+        <service id="corley_maintenance.strategy.copy"
+            class="Corley\MaintenanceBundle\Maintenance\Strategy\CopyStrategy" />
+
+        <service id="corley_maintenance.runner" class="Corley\MaintenanceBundle\Maintenance\Runner">
+            <argument>%maintenance.web%</argument>
+            <argument>%maintenance.page%</argument>
+            <call method="setStrategy">
+                <argument type="service" id="corley_maintenance.strategy"/>
+            </call>
+            <call method="setActiveLinkName">
+                <argument>%maintenance.active_link_name%</argument>
+            </call>
+        </service>
+
+        <service id="corley_maintenance.command.maintenance_command"
+            class="Corley\MaintenanceBundle\Command\MaintenanceCommand">
+            <argument type="service" id="corley_maintenance.runner" />
+            <tag name="console.command" />
+        </service>
+    </services>
+</container>
