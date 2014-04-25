@@ -14,7 +14,7 @@ class DumpApacheConfCommand extends ContainerAwareCommand
     {
         $this
             ->setName("corley:maintenance:dump-apache")
-            ->setDescription("How to configuration your Apache web server")
+            ->setDescription("How to configure your Apache web server")
             ->setHelp(<<<EOF
 See how to configure your Apache2 web server in order to enable/disable maintenance mode
 

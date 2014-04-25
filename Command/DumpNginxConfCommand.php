@@ -14,7 +14,7 @@ class DumpNginxConfCommand extends ContainerAwareCommand
     {
         $this
             ->setName("corley:maintenance:dump-nginx")
-            ->setDescription("How to configuration your Nginx web server")
+            ->setDescription("How to configure your Nginx web server")
             ->setHelp(<<<EOF
 See how to configure your Nginx web server in order to enable/disable maintenance mode
 
