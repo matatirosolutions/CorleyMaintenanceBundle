@@ -21,7 +21,7 @@ class MaintenanceCommand extends Command
     protected function configure()
     {
         $this
-            ->setName("corley:maintenance")
+            ->setName("corley:maintenance:lock")
             ->setDescription("Enable/Disable maintenance mode")
             ->setDefinition(array(
                 new InputArgument('status', InputArgument::REQUIRED, 'The final status')
@@ -29,7 +29,7 @@ class MaintenanceCommand extends Command
             ->setHelp(<<<EOF
 Enable or Disable the Maintenance mode
 
-    <info>php app/console corley:maintenance on</info>
+    <info>php app/console corley:maintenance:lock on</info>
 EOF
         );
     }

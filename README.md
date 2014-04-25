@@ -26,18 +26,33 @@ Add also the repository to your composer
 ],
 ```
 
+Register the bundle in your `AppKernel`
+
+```php
+public function registerBundles()
+{
+    ...
+    $bundles = array(
+        ...
+        new Corley\MaintenanceBundle\CorleyMaintenanceBundle(),
+    );
+    ...
+    return $bundles;
+}
+```
+
 ## Maintenance mode
 
 When you want to put your web application under maintenance
 
 ```shell
-app/console corley:maintenance on
+app/console corley:maintenance:lock on
 ```
 
 Restore the application status
 
 ```shell
-app/console corley:maintenance off
+app/console corley:maintenance:lock off
 ```
 
 ## Configure your web server

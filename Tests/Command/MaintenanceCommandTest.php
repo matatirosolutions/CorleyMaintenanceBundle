@@ -19,7 +19,7 @@ class MaintenanceCommandTest extends \PHPUnit_Framework_TestCase
         $application = new Application($this->kernel);
         $application->add(new MaintenanceCommand($this->runner));
 
-        $command = $application->find('corley:maintenance');
+        $command = $application->find('corley:maintenance:lock');
         $commandTester = new CommandTester($command);
 
         return $commandTester;
