@@ -7,6 +7,10 @@ abstract class BaseStrategy
 
     public function remove($maintenanceFile)
     {
-        unlink($maintenanceFile);
+        if (file_exists($maintenanceFile)) {
+            unlink($maintenanceFile);
+        }
+
+        return $maintenanceFile;
     }
 }

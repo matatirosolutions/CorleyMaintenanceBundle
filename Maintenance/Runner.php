@@ -36,10 +36,13 @@ class Runner
             throw new \InvalidArgumentException("Source file {$this->sourceFile} is missing");
         }
 
+        $maintenanceFile = false;
         if ($status) {
-            $this->strategy->put("{$this->sourceFile}", "{$this->publicFolder}/{$this->destinationFileName}");
+            $maintenanceFile = $this->strategy->put("{$this->sourceFile}", "{$this->publicFolder}/{$this->destinationFileName}");
         } else {
-            $this->strategy->remove("{$this->publicFolder}/{$this->destinationFileName}");
+            $maintenanceFile = $this->strategy->remove("{$this->publicFolder}/{$this->destinationFileName}");
         }
+
+        return $maintenanceFile;
     }
 }

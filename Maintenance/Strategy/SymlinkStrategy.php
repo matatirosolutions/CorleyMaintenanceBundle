@@ -5,6 +5,10 @@ class SymlinkStrategy extends BaseStrategy
 {
     public function put($sourceFile, $maintenanceFile)
     {
-        symlink($sourceFile, $maintenanceFile);
+        if (!file_exists($maintenanceFile)) {
+            symlink($sourceFile, $maintenanceFile);
+        }
+
+        return $maintenanceFile;
     }
 }
