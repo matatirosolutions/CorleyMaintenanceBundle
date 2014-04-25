@@ -46,13 +46,13 @@ public function registerBundles()
 When you want to put your web application under maintenance
 
 ```shell
-app/console corley:maintenance on
+app/console corley:maintenance:lock on
 ```
 
 Restore the application status
 
 ```shell
-app/console corley:maintenance off
+app/console corley:maintenance:lock off
 ```
 
 ## Configure your web server
