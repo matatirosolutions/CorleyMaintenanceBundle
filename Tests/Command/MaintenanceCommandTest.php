@@ -50,7 +50,6 @@ class MaintenanceCommandTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo($enable));
 
         $commandTester->execute($status);
-
     }
 
     public function combinations()
