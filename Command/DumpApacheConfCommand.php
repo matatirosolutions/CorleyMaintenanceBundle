@@ -27,12 +27,13 @@ EOF
     {
         $container = $this->getContainer();
 
-        $output->write(<<<EOF
+        $output->writeln(<<<EOF
 Open your .htaccess file and paste those lines:
 
     RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.active_link_name")} -f
     RewriteCond %{SCRIPT_FILENAME} !{$container->getParameter("maintenance.active_link_name")}
-    RewriteRule ^.*$ /{$container->getParameter("maintenance.active_link_name")} [L]
+    RewriteRule ^.*$ /{$container->getParameter("maintenance.active_link_name")} [R=503,L]
+    ErrorDocument 503 /{$container->getParameter("maintenance.active_link_name")}
 
 EOF
         );
