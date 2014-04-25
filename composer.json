@@ -2,7 +2,7 @@
     "name": "corley/maintenance-bundle",
     "type": "symfony-bundle",
     "description": "Corley Maintenance Bundle",
-    "keywords": ["Maintenance management"],
+    "keywords": ["Maintenance management", "503", "apache2", "apache", "nginx", "maintenance"],
     "license": "MIT",
     "autoload": {
         "psr-0": { "Corley\\MaintenanceBundle": "" }
