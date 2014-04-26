@@ -42,6 +42,8 @@ Open your .htaccess file and paste those lines:
         Header set Expires -1 env=MAINTENANCE
     </IfModule>
 
+    ErrorDocument 503 /{$container->getParameter("maintenance.active_link_name")}
+
 EOF
         );
     }
