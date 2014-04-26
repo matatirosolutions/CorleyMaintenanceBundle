@@ -33,7 +33,14 @@ Open your .htaccess file and paste those lines:
     RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.active_link_name")} -f
     RewriteCond %{SCRIPT_FILENAME} !{$container->getParameter("maintenance.active_link_name")}
     RewriteRule ^.*$ /{$container->getParameter("maintenance.active_link_name")} [R=503,L]
-    ErrorDocument 503 /{$container->getParameter("maintenance.active_link_name")}
+
+    RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.active_link_name")} -f
+    RewriteRule ^(.*)$ - [env=MAINTENANCE:1]
+
+    <IfModule mod_headers.c>
+        Header set cache-control "max-age=0,must-revalidate,post-check=0,pre-check=0" env=MAINTENANCE
+        Header set Expires -1 env=MAINTENANCE
+    </IfModule>
 
 EOF
         );
