@@ -86,14 +86,14 @@ You can configure the bundle in order to change the default behaviour (all optio
 # config.yml
 corley_maintenance:
     page: %kernel.root_dir%/../web/maintenance.dist.html
-    active_link_name: lock.html
+    hard_lock: lock.html
     symlink: false
 ```
 
 Options:
 
 * `page` is the original maintenance page
-* `active_link_name` Is the name used in order to lock the website
+* `hard_lock` Is the name used in order to lock the website
 * `symlink` If you want to use symlinks instead hardcopy strategy
 
 You can also rewrite the `public` folder using the `web` parameter.

@@ -16,8 +16,9 @@ class CorleyMaintenanceExtension extends Extension
 
         $container->setParameter('maintenance.page', $config['page']);
         $container->setParameter('maintenance.web', $config["web"]);
-        $container->setParameter('maintenance.active_link_name', $config["active_link_name"]);
         $container->setParameter('maintenance.symlink', $config["symlink"]);
+        $container->setParameter('maintenance.hard_lock', $config["hard_lock"]);
+        $container->setParameter('maintenance.soft_lock', $config["soft_lock"]);
 
         if ($config["symlink"]) {
             $container->setAlias('corley_maintenance.strategy', 'corley_maintenance.strategy.symlink');

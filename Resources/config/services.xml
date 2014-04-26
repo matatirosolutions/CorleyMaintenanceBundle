@@ -7,6 +7,8 @@
             class="Corley\MaintenanceBundle\Maintenance\Strategy\SymlinkStrategy" />
         <service id="corley_maintenance.strategy.copy"
             class="Corley\MaintenanceBundle\Maintenance\Strategy\CopyStrategy" />
+        <service id="corley_maintenance.strategy.touch"
+            class="Corley\MaintenanceBundle\Maintenance\Strategy\TouchStrategy" />
 
         <service id="corley_maintenance.runner" class="Corley\MaintenanceBundle\Maintenance\Runner">
             <argument>%maintenance.web%</argument>
@@ -15,7 +17,18 @@
                 <argument type="service" id="corley_maintenance.strategy"/>
             </call>
             <call method="setActiveLinkName">
-                <argument>%maintenance.active_link_name%</argument>
+                <argument>%maintenance.hard_lock%</argument>
+            </call>
+        </service>
+
+        <service id="corley_maintenance.runner_soft_lock" class="Corley\MaintenanceBundle\Maintenance\Runner">
+            <argument>%maintenance.web%</argument>
+            <argument>%maintenance.page%</argument>
+            <call method="setStrategy">
+                <argument type="service" id="corley_maintenance.strategy.touch"/>
+            </call>
+            <call method="setActiveLinkName">
+                <argument>%maintenance.soft_lock%</argument>
             </call>
         </service>
 
@@ -23,6 +36,21 @@
             class="Corley\MaintenanceBundle\Command\MaintenanceCommand">
             <argument type="service" id="corley_maintenance.runner" />
             <tag name="console.command" />
+        </service>
+
+        <service id="corley_maintenance.command.soft_maintenance_command"
+            class="Corley\MaintenanceBundle\Command\SoftMaintenanceCommand">
+            <argument type="service" id="corley_maintenance.runner_soft_lock" />
+            <tag name="console.command" />
+        </service>
+
+        <service id="corley_maintenance.soft_lock" class="Corley\MaintenanceBundle\Listener\SoftLockListener">
+            <argument>%maintenance.page%</argument>
+            <argument>%maintenance.soft_lock%</argument>
+            <call method="setRequestStack">
+                <argument type="service" id="request_stack"/>
+            </call>
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="255"/>
         </service>
     </services>
 </container>
