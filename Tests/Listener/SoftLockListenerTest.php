@@ -29,7 +29,7 @@ class SoftLockListenerTest extends \PHPUnit_Framework_TestCase
             ->method('getCurrentRequest')
             ->will($this->returnValue(Request::create('/')));
 
-        $listener = new SoftLockListener(__FILE__, __FILE__ . '.lock', array());
+        $listener = new SoftLockListener(__FILE__, __FILE__ . '.lock', array(), array());
         $listener->setRequestStack($this->requestStack);
 
         $listener->onKernelRequest($this->event);
@@ -45,7 +45,7 @@ class SoftLockListenerTest extends \PHPUnit_Framework_TestCase
             ->method('getCurrentRequest')
             ->will($this->returnValue(Request::create('/')));
 
-        $listener = new SoftLockListener(__FILE__, __FILE__, array());
+        $listener = new SoftLockListener(__FILE__, __FILE__, array(), array());
         $listener->setRequestStack($this->requestStack);
 
         $listener->onKernelRequest($this->event);
@@ -61,7 +61,43 @@ class SoftLockListenerTest extends \PHPUnit_Framework_TestCase
             ->method('getCurrentRequest')
             ->will($this->returnValue(Request::create('/_profiler')));
 
-        $listener = new SoftLockListener(__FILE__, __FILE__, array());
+        $listener = new SoftLockListener(__FILE__, __FILE__, array(), array());
+        $listener->setRequestStack($this->requestStack);
+
+        $listener->onKernelRequest($this->event);
+
+        $this->assertNull($this->event->getResponse());
+        $this->assertFalse($this->event->isPropagationStopped());
+    }
+
+    public function testIpIsNotAllowed()
+    {
+        $this->requestStack
+            ->expects($this->any())
+            ->method('getCurrentRequest')
+            ->will($this->returnValue(
+                Request::create('/the/app/path', "GET", array(), array(), array(), array('REMOTE_ADDR' => '127.0.0.1'))
+            ));
+
+        $listener = new SoftLockListener(__FILE__, __FILE__, array(), array());
+        $listener->setRequestStack($this->requestStack);
+
+        $listener->onKernelRequest($this->event);
+
+        $this->assertNotNull($this->event->getResponse());
+        $this->assertTrue($this->event->isPropagationStopped());
+    }
+
+    public function testIpIsAuthorized()
+    {
+        $this->requestStack
+            ->expects($this->any())
+            ->method('getCurrentRequest')
+            ->will($this->returnValue(
+                Request::create('/the/app/path', "GET", array(), array(), array(), array('REMOTE_ADDR' => '127.0.0.1'))
+            ));
+
+        $listener = new SoftLockListener(__FILE__, __FILE__, array(), array("127.0.0.1"));
         $listener->setRequestStack($this->requestStack);
 
         $listener->onKernelRequest($this->event);

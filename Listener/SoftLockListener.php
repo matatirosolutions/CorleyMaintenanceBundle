@@ -14,17 +14,20 @@ class SoftLockListener
     private $lock;
 
     private $whitePaths;
+    private $whiteIps;
 
-    public function __construct($maintenancePage, $maintenanceLock, array $whitePaths)
+    public function __construct($maintenancePage, $maintenanceLock, array $whitePaths, array $whiteIps)
     {
         $this->maintenancePage = $maintenancePage;
         $this->lock = file_exists($maintenanceLock);
+        $this->whiteIps = $this->whiteIps;
 
         array_walk($whitePaths, function(&$elem) {
             $elem = "/" . str_replace("/", "\\/", $elem) . "/";
         });
 
         $this->whitePaths = array_replace(array("/^\/_/"), $whitePaths);
+        $this->whiteIps = array_replace(array(), $whiteIps);
     }
 
     public function setRequestStack($requestStack)
@@ -47,7 +50,19 @@ class SoftLockListener
     private function isUnderMaintenance()
     {
         $path = $this->requestStack->getCurrentRequest()->getPathInfo();
-        return ($this->lock && $this->isPathUnderMaintenance($path));
+        return ($this->lock && $this->isIpNotAuthorized() && $this->isPathUnderMaintenance($path));
+    }
+
+    private function isIpNotAuthorized()
+    {
+        $currentIp = $this->requestStack->getCurrentRequest()->getClientIp();
+        foreach ($this->whiteIps as $allowedIp) {
+            if ($currentIp == $allowedIp) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private function isPathUnderMaintenance($path)

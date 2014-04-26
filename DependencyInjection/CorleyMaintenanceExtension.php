@@ -20,6 +20,7 @@ class CorleyMaintenanceExtension extends Extension
         $container->setParameter('maintenance.hard_lock', $config["hard_lock"]);
         $container->setParameter('maintenance.soft_lock', $config["soft_lock"]);
         $container->setParameter('maintenance.white_paths', $config['whitelist']['paths']);
+        $container->setParameter('maintenance.white_ips', $config['whitelist']['ips']);
 
         if ($config["symlink"]) {
             $container->setAlias('corley_maintenance.strategy', 'corley_maintenance.strategy.symlink');

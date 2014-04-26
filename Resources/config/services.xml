@@ -48,6 +48,7 @@
             <argument>%maintenance.page%</argument>
             <argument>%maintenance.soft_lock%</argument>
             <argument>%maintenance.white_paths%</argument>
+            <argument>%maintenance.white_ips%</argument>
             <call method="setRequestStack">
                 <argument type="service" id="request_stack"/>
             </call>

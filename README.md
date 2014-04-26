@@ -15,7 +15,7 @@ Those conditions will ensure that a load balancer cut an instance off during a m
 In your `composer.json` add the requirement
 
 ```json
-require: {
+"require": {
     "corley/maintenance-bundle": "0.1.*"
 }
 ```
