@@ -15,14 +15,16 @@ class SoftLockListener
 
     private $whitePaths;
 
-    public function __construct($maintenancePage, $maintenanceLock)
+    public function __construct($maintenancePage, $maintenanceLock, array $whitePaths)
     {
         $this->maintenancePage = $maintenancePage;
         $this->lock = file_exists($maintenanceLock);
 
-        $this->whitePaths = array(
-            "/^\/_/",
-        );
+        array_walk($whitePaths, function(&$elem) {
+            $elem = "/" . str_replace("/", "\\/", $elem) . "/";
+        });
+
+        $this->whitePaths = array_replace(array("/^\/_/"), $whitePaths);
     }
 
     public function setRequestStack($requestStack)

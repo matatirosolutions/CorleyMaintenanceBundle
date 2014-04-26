@@ -29,7 +29,7 @@ class SoftLockListenerTest extends \PHPUnit_Framework_TestCase
             ->method('getCurrentRequest')
             ->will($this->returnValue(Request::create('/')));
 
-        $listener = new SoftLockListener(__FILE__, __FILE__ . '.lock');
+        $listener = new SoftLockListener(__FILE__, __FILE__ . '.lock', array());
         $listener->setRequestStack($this->requestStack);
 
         $listener->onKernelRequest($this->event);
@@ -45,7 +45,7 @@ class SoftLockListenerTest extends \PHPUnit_Framework_TestCase
             ->method('getCurrentRequest')
             ->will($this->returnValue(Request::create('/')));
 
-        $listener = new SoftLockListener(__FILE__, __FILE__);
+        $listener = new SoftLockListener(__FILE__, __FILE__, array());
         $listener->setRequestStack($this->requestStack);
 
         $listener->onKernelRequest($this->event);
@@ -61,7 +61,7 @@ class SoftLockListenerTest extends \PHPUnit_Framework_TestCase
             ->method('getCurrentRequest')
             ->will($this->returnValue(Request::create('/_profiler')));
 
-        $listener = new SoftLockListener(__FILE__, __FILE__);
+        $listener = new SoftLockListener(__FILE__, __FILE__, array());
         $listener->setRequestStack($this->requestStack);
 
         $listener->onKernelRequest($this->event);

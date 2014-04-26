@@ -95,9 +95,12 @@ Options:
 * `page` is the original maintenance page
 * `symlink` If you want to use symlinks instead hardcopy strategy
 * `hard_lock` Is the name used in order to lock the website
+* `web` public folder (by default `web` folder)
 * `soft_lock` Is the name used in order to lock the website (using app layer)
+* `whilelist` Authorized connections [soft-lock only]
+  * `paths` A list of paths that skip the maintenance lock
+  * `ips` A list of ips that skip the maintenance lock
 
-You can also rewrite the `public` folder using the `web` parameter.
 
 ## Soft locking
 The soft locking strategy use the php layer in order to lock down the website. This means that the

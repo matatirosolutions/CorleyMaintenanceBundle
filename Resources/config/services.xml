@@ -47,6 +47,7 @@
         <service id="corley_maintenance.soft_lock" class="Corley\MaintenanceBundle\Listener\SoftLockListener">
             <argument>%maintenance.page%</argument>
             <argument>%maintenance.soft_lock%</argument>
+            <argument>%maintenance.white_paths%</argument>
             <call method="setRequestStack">
                 <argument type="service" id="request_stack"/>
             </call>

@@ -18,6 +18,13 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode("soft_lock")->defaultValue('soft.lock')->end()
                 ->scalarNode("hard_lock")->defaultValue('hard.lock')->end()
                 ->booleanNode("symlink")->defaultFalse()->end()
+                ->arrayNode("whitelist")
+                    ->children()
+                        ->arrayNode('paths')
+                            ->requiresAtLeastOneElement()
+                            ->prototype('scalar')
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
