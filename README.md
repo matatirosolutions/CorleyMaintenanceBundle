@@ -93,9 +93,15 @@ corley_maintenance:
 Options:
 
 * `page` is the original maintenance page
-* `hard_lock` Is the name used in order to lock the website
 * `symlink` If you want to use symlinks instead hardcopy strategy
+* `hard_lock` Is the name used in order to lock the website
+* `soft_lock` Is the name used in order to lock the website (using app layer)
 
 You can also rewrite the `public` folder using the `web` parameter.
 
+## Soft locking
+The soft locking strategy use the php layer in order to lock down the website. This means that the
+application must works in order to lock down the web site.
+
+The soft lock runs at `kernel.request` and stop other event propagations.
 
