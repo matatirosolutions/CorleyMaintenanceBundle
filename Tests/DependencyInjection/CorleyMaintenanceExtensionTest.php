@@ -37,7 +37,7 @@ class CorleyMaintenanceExtensionTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider symlinkModes
      */
-    public function testNotSymlink($config, $class)
+    public function testSymlinkAndCopyModes($config, $class)
     {
         $extension = new CorleyMaintenanceExtension();
         $extension->load($config, $this->container);
