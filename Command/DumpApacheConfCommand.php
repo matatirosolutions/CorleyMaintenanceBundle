@@ -30,11 +30,11 @@ EOF
         $output->writeln(<<<EOF
 Open your .htaccess file and paste those lines:
 
-    RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.active_link_name")} -f
-    RewriteCond %{SCRIPT_FILENAME} !{$container->getParameter("maintenance.active_link_name")}
-    RewriteRule ^.*$ /{$container->getParameter("maintenance.active_link_name")} [R=503,L]
+    RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.hard_lock")} -f
+    RewriteCond %{SCRIPT_FILENAME} !{$container->getParameter("maintenance.hard_lock")}
+    RewriteRule ^.*$ /{$container->getParameter("maintenance.hard_lock")} [R=503,L]
 
-    RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.active_link_name")} -f
+    RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.hard_lock")} -f
     RewriteRule ^(.*)$ - [env=MAINTENANCE:1]
 
     <IfModule mod_headers.c>
@@ -42,7 +42,7 @@ Open your .htaccess file and paste those lines:
         Header set Expires -1 env=MAINTENANCE
     </IfModule>
 
-    ErrorDocument 503 /{$container->getParameter("maintenance.active_link_name")}
+    ErrorDocument 503 /{$container->getParameter("maintenance.hard_lock")}
 
 EOF
         );

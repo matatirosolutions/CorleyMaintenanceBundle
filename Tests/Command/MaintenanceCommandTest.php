@@ -13,7 +13,7 @@ class MaintenanceCommandTest extends \PHPUnit_Framework_TestCase
 
     private function prepareCommand()
     {
-        $this->kernel = $this->getMock('Symfony\\Component\\HttpKernel\\KernelInterface', array(), array(), '', false, false);
+        $this->kernel = $this->getMock('Symfony\\Component\\HttpKernel\\KernelInterface');
         $this->runner = $this->getMock('Corley\\MaintenanceBundle\\Maintenance\\Runner', array(), array(), '', false, false);
 
         $application = new Application($this->kernel);

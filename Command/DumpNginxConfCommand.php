@@ -31,7 +31,7 @@ EOF
 Open your site configuration file and paste those lines:
 
     location / {
-        if (-f \$document_root/{$container->getParameter("maintenance.active_link_name")}) {
+        if (-f \$document_root/{$container->getParameter("maintenance.hard_lock")}) {
             return 503;
         }
 
@@ -40,7 +40,7 @@ Open your site configuration file and paste those lines:
 
     error_page 503 @maintenance;
     location @maintenance {
-        rewrite ^(.*)$ /{$container->getParameter("maintenance.active_link_name")} break;
+        rewrite ^(.*)$ /{$container->getParameter("maintenance.hard_lock")} break;
     }
 
 EOF

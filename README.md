@@ -15,7 +15,7 @@ Those conditions will ensure that a load balancer cut an instance off during a m
 In your `composer.json` add the requirement
 
 ```json
-require: {
+"require": {
     "corley/maintenance-bundle": "0.1.*"
 }
 ```
@@ -86,16 +86,25 @@ You can configure the bundle in order to change the default behaviour (all optio
 # config.yml
 corley_maintenance:
     page: %kernel.root_dir%/../web/maintenance.dist.html
-    active_link_name: lock.html
+    hard_lock: lock.html
     symlink: false
 ```
 
 Options:
 
 * `page` is the original maintenance page
-* `active_link_name` Is the name used in order to lock the website
 * `symlink` If you want to use symlinks instead hardcopy strategy
+* `hard_lock` Is the name used in order to lock the website
+* `web` public folder (by default `web` folder)
+* `soft_lock` Is the name used in order to lock the website (using app layer)
+* `whilelist` Authorized connections [soft-lock only]
+  * `paths` A list of paths that skip the maintenance lock
+  * `ips` A list of ips that skip the maintenance lock
 
-You can also rewrite the `public` folder using the `web` parameter.
 
+## Soft locking
+The soft locking strategy use the php layer in order to lock down the website. This means that the
+application must works in order to lock down the web site.
+
+The soft lock runs at `kernel.request` and stop other event propagations.
 

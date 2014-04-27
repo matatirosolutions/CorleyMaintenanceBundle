@@ -13,10 +13,22 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode("page")->defaultValue(__DIR__ . '/../Resources/views/maintenance.html')->end()
+                ->scalarNode("page")->defaultValue(realpath(__DIR__ . '/../Resources/views/maintenance.html'))->end()
                 ->scalarNode("web")->defaultValue('%kernel.root_dir%/../web')->end()
-                ->scalarNode("active_link_name")->defaultValue('maintenance.html')->end()
+                ->scalarNode("soft_lock")->defaultValue('soft.lock')->end()
+                ->scalarNode("hard_lock")->defaultValue('hard.lock')->end()
                 ->booleanNode("symlink")->defaultFalse()->end()
+                ->arrayNode("whitelist")
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->variableNode('paths')
+                            ->defaultValue(array())
+                        ->end()
+                        ->variableNode('ips')
+                            ->defaultValue(array())
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
