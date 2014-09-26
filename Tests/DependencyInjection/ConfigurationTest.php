@@ -32,7 +32,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                         'paths' => array(),
                         'ips' => array()
                     ),
-                    'page' => realpath(__DIR__ . '/../../Resources/views/maintenance.html'),
+                    'page' => "CorleyMaintenanceBundle:maintenance.html",
                 )
             ),
             array(
@@ -46,7 +46,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                         'paths' => array('/_'),
                         'ips' => array()
                     ),
-                    'page' => realpath(__DIR__ . '/../../Resources/views/maintenance.html'),
+                    'page' => "CorleyMaintenanceBundle:maintenance.html",
                 )
             ),
         );
