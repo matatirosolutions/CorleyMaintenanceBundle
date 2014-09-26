@@ -1,10 +1,7 @@
 <?php
 namespace Corley\MaintenanceBundle\Command;
 
-use Corley\MaintenanceBundle\Maintenance\Runner;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -40,6 +37,8 @@ Open your site configuration file and paste those lines:
 
     error_page 503 @maintenance;
     location @maintenance {
+        expires           0;
+        add_header        Cache-Control private;
         rewrite ^(.*)$ /{$container->getParameter("maintenance.hard_lock")} break;
     }
 

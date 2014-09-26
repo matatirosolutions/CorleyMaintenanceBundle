@@ -12,7 +12,7 @@ class BaseStrategyTest extends \PHPUnit_Framework_TestCase
         $this->root = vfsStream::setup('web');
     }
 
-    public function testCopy()
+    public function testRemove()
     {
         $strategy = $this->getMockForAbstractClass('Corley\MaintenanceBundle\Maintenance\Strategy\BaseStrategy');
         file_put_contents(vfsStream::url('web/a'), "MAINTENANCE");
