@@ -2,6 +2,7 @@
 namespace Corley\MaintenanceBundle\Listener;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class SoftLockListener
 {
@@ -31,7 +32,7 @@ class SoftLockListener
         $this->requestStack = $requestStack;
     }
 
-    public function onKernelRequest($event)
+    public function onKernelRequest(GetResponseEvent $event)
     {
         if ($this->isUnderMaintenance()) {
             $response = new Response();
