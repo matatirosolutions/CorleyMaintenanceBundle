@@ -40,6 +40,8 @@ Open your site configuration file and paste those lines:
 
     error_page 503 @maintenance;
     location @maintenance {
+        expires           0;
+        add_header        Cache-Control private;
         rewrite ^(.*)$ /{$container->getParameter("maintenance.hard_lock")} break;
     }
 
