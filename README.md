@@ -1,5 +1,7 @@
 # Corley Maintenance Bundle
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/aa52f44b-26f4-45ba-9b62-423dbda8d80b/big.png)](https://insight.sensiolabs.com/projects/aa52f44b-26f4-45ba-9b62-423dbda8d80b)
+
 Just an unified way to put a web application under maintenance mode using web server strategies. The maintenance
 mode will cut off all requests and it will replies with a static html file and a 503 header (Service Unavailable).
 
