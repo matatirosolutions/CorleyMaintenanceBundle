@@ -7,10 +7,7 @@ mode will cut off all requests and it will replies with a static html file and a
 
 Those conditions will ensure that a load balancer cut an instance off during a maintenance
 
-  * Master (stable)
-    * [![Build Status](https://travis-ci.org/wdalmut/CorleyMaintenanceBundle.svg?branch=master)](https://travis-ci.org/wdalmut/CorleyMaintenanceBundle)
-  * Develop
-    * [![Build Status](https://travis-ci.org/wdalmut/CorleyMaintenanceBundle.svg?branch=develop)](https://travis-ci.org/wdalmut/CorleyMaintenanceBundle)
+[![Build Status](https://travis-ci.org/wdalmut/CorleyMaintenanceBundle.svg?branch=master)](https://travis-ci.org/wdalmut/CorleyMaintenanceBundle)
 
 ## Install
 
@@ -20,17 +17,6 @@ In your `composer.json` add the requirement
 "require": {
     "corley/maintenance-bundle": "0.1.*"
 }
-```
-
-Add also the repository to your composer
-
-```json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/wdalmut/CorleyMaintenanceBundle"
-    }
-],
 ```
 
 Register the bundle in your `AppKernel`
