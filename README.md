@@ -58,12 +58,12 @@ In order to obtain your configuration options just use the console
 ### Apache2
 
 ```shell
-app/console corley:maintenance:apache-dump
+app/console corley:maintenance:dump-apache
 ```
 ### Nginx
 
 ```shell
-app/console corley:maintenance:nginx-dump
+app/console corley:maintenance:dump-nginx
 ```
 
 ## Configuration
