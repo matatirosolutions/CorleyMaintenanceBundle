@@ -17,7 +17,6 @@ class SoftLockListener
     {
         $this->maintenancePage = $maintenancePage;
         $this->lock = file_exists($maintenanceLock);
-        $this->whiteIps = $this->whiteIps;
 
         array_walk($whitePaths, function(&$elem) {
             $elem = "/" . str_replace("/", "\\/", $elem) . "/";
