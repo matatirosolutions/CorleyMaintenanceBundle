@@ -24,7 +24,6 @@ class SoftLockListener
         });
 
         $this->whitePaths = array_replace(array("/^\/_/"), $whitePaths);
-        $this->whiteIps = array_replace(array(), $whiteIps);
     }
 
     public function setRequestStack($requestStack)
