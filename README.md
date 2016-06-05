@@ -13,7 +13,7 @@ In your `composer.json` add the requirement
 
 ```json
 "require": {
-    "corley/maintenance-bundle": "0.1.*"
+    "corley/maintenance-bundle": "0.2.*"
 }
 ```
 
