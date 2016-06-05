@@ -7,7 +7,17 @@ Those conditions will ensure that a load balancer cut an instance off during a m
 
 [![Build Status](https://travis-ci.org/wdalmut/CorleyMaintenanceBundle.svg?branch=master)](https://travis-ci.org/wdalmut/CorleyMaintenanceBundle)
 
-## Install
+## Install Symfony >= 2.6
+
+In your `composer.json` add the requirement
+
+```json
+"require": {
+    "corley/maintenance-bundle": "0.2.*"
+}
+```
+
+### Old Symfony releases
 
 In your `composer.json` add the requirement
 
