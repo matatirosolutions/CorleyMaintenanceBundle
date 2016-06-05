@@ -15,7 +15,12 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, array($options));
 
-        $this->assertEquals($results, $config);
+        $this->assertEquals($results["symlink"], $config["symlink"]);
+        $this->assertEquals($results["soft_lock"], $config["soft_lock"]);
+        $this->assertEquals($results["hard_lock"], $config["hard_lock"]);
+        $this->assertEquals($results["web"], $config["web"]);
+        $this->assertEquals($results["whitelist"], $config["whitelist"]);
+        $this->assertRegExp("/{$results["page"]}$/i", $config["page"]);
     }
 
     public function getModes()
@@ -32,7 +37,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                         'paths' => array(),
                         'ips' => array()
                     ),
-                    'page' => "CorleyMaintenanceBundle:maintenance.html",
+                    'page' => "maintenance.html",
                 )
             ),
             array(
@@ -46,7 +51,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                         'paths' => array('/_'),
                         'ips' => array()
                     ),
-                    'page' => "CorleyMaintenanceBundle:maintenance.html",
+                    'page' => "maintenance.html",
                 )
             ),
         );

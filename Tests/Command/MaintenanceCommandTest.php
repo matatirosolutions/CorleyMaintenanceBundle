@@ -1,8 +1,8 @@
 <?php
 namespace Corley\MaintenanceBundle\Tests\Command;
 
+use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
 
 use Corley\MaintenanceBundle\Command\MaintenanceCommand;
 
@@ -13,10 +13,10 @@ class MaintenanceCommandTest extends \PHPUnit_Framework_TestCase
 
     private function prepareCommand()
     {
-        $this->kernel = $this->getMock('Symfony\\Component\\HttpKernel\\KernelInterface');
+        //$this->kernel = $this->getMock('Symfony\\Component\\HttpKernel\\KernelInterface');
         $this->runner = $this->getMock('Corley\\MaintenanceBundle\\Maintenance\\Runner', array(), array(), '', false, false);
 
-        $application = new Application($this->kernel);
+        $application = new Application();
         $application->add(new MaintenanceCommand($this->runner));
 
         $command = $application->find('corley:maintenance:lock');
