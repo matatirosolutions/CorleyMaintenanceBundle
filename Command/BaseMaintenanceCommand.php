@@ -6,6 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ChoiceQuestion;
 
 class BaseMaintenanceCommand extends Command
 {
@@ -50,20 +51,12 @@ EOF
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         if (!$input->getArgument('status')) {
-            $status = $this->getHelper('dialog')->askAndValidate(
-                $output,
-                'Please choose the final status: [on/off]: ',
-                function($status) {
-                    switch ($status) {
-                        case 'on':
-                            return "on";
-                        case 'off':
-                            return "off";
-                        default:
-                            throw new \InvalidArgumentException("You have to pass 'on' or 'off'");
-                    }
-                }
-            );
+            $helper = $this->getHelper("question");
+            $question = new ChoiceQuestion('Please choose the final status: [on/off]', ['on', 'off'], 1);
+            $question->setErrorMessage('Status %s is invalid.');
+
+            $status = $helper->ask($input, $output, $question);
+
             $input->setArgument('status', $status);
         }
     }
