@@ -17,14 +17,13 @@ class SoftLockListener
     {
         $this->maintenancePage = $maintenancePage;
         $this->lock = file_exists($maintenanceLock);
-        $this->whiteIps = $this->whiteIps;
+        $this->whiteIps = $whiteIps;
 
         array_walk($whitePaths, function(&$elem) {
             $elem = "/" . str_replace("/", "\\/", $elem) . "/";
         });
 
         $this->whitePaths = array_replace(array("/^\/_/"), $whitePaths);
-        $this->whiteIps = array_replace(array(), $whiteIps);
     }
 
     public function setRequestStack($requestStack)
