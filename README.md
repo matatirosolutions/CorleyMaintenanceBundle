@@ -37,13 +37,13 @@ public function registerBundles()
 When you want to put your web application under maintenance
 
 ```shell
-app/console corley:maintenance:lock on
+bin/console corley:maintenance:lock on
 ```
 
 Restore the application status
 
 ```shell
-app/console corley:maintenance:lock off
+bin/console corley:maintenance:lock off
 ```
 
 ## Configure your web server
@@ -58,12 +58,12 @@ In order to obtain your configuration options just use the console
 ### Apache2
 
 ```shell
-app/console corley:maintenance:dump-apache
+bin/console corley:maintenance:dump-apache
 ```
 ### Nginx
 
 ```shell
-app/console corley:maintenance:dump-nginx
+bin/console corley:maintenance:dump-nginx
 ```
 
 ## Configuration
