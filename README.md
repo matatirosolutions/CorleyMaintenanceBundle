@@ -96,3 +96,14 @@ application must works in order to lock down the web site.
 
 The soft lock runs at `kernel.request` and stop other event propagations.
 
+When you want to put your web application under maintenance using a soft-locking strategy:
+
+```shell
+bin/console corley:maintenance:soft-lock on
+```
+
+Restore the application status
+
+```shell
+bin/console corley:maintenance:soft-lock off
+```
