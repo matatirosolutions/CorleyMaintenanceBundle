@@ -37,31 +37,33 @@ public function registerBundles()
 When you want to put your web application under maintenance
 
 ```shell
-app/console corley:maintenance:lock on
+bin/console corley:maintenance:lock on
 ```
 
 Restore the application status
 
 ```shell
-app/console corley:maintenance:lock off
+bin/console corley:maintenance:lock off
 ```
 
 ## Configure your web server
 
 If you use Apache2 you have to add few lines to your `.htaccess`, in case of nginx just add dedicated
 lines to web app configuration.
+Make sure that those lines precede any other rewrite rule.
+The `mod_rewrite` module in Apache2 has to be installed and enabled.
 
 In order to obtain your configuration options just use the console
 
 ### Apache2
 
 ```shell
-app/console corley:maintenance:dump-apache
+bin/console corley:maintenance:dump-apache
 ```
 ### Nginx
 
 ```shell
-app/console corley:maintenance:dump-nginx
+bin/console corley:maintenance:dump-nginx
 ```
 
 ## Configuration
@@ -94,3 +96,14 @@ application must works in order to lock down the web site.
 
 The soft lock runs at `kernel.request` and stop other event propagations.
 
+When you want to put your web application under maintenance using a soft-locking strategy:
+
+```shell
+bin/console corley:maintenance:soft-lock on
+```
+
+Restore the application status
+
+```shell
+bin/console corley:maintenance:soft-lock off
+```

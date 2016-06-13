@@ -25,18 +25,21 @@ EOF
         $container = $this->getContainer();
 
         $output->writeln(<<<EOF
-Open your .htaccess file and paste those lines:
+Open your .htaccess file and paste those lines before any other rewrite rule:
 
-    RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.hard_lock")} -f
-    RewriteCond %{SCRIPT_FILENAME} !{$container->getParameter("maintenance.hard_lock")}
-    RewriteRule ^.*$ /{$container->getParameter("maintenance.hard_lock")} [R=503,L]
+    <IfModule mod_rewrite.c>
+      RewriteEngine on
+      RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.hard_lock")} -f
+      RewriteCond %{SCRIPT_FILENAME} !{$container->getParameter("maintenance.hard_lock")}
+      RewriteRule ^.*$ /{$container->getParameter("maintenance.hard_lock")} [R=503,L]
 
-    RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.hard_lock")} -f
-    RewriteRule ^(.*)$ - [env=MAINTENANCE:1]
+      RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.hard_lock")} -f
+      RewriteRule ^(.*)$ - [env=MAINTENANCE:1]
 
-    <IfModule mod_headers.c>
+      <IfModule mod_headers.c>
         Header set cache-control "max-age=0,must-revalidate,post-check=0,pre-check=0" env=MAINTENANCE
         Header set Expires -1 env=MAINTENANCE
+      </IfModule>
     </IfModule>
 
     ErrorDocument 503 /{$container->getParameter("maintenance.hard_lock")}
