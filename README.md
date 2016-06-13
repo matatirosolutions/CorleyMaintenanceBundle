@@ -50,6 +50,8 @@ app/console corley:maintenance:lock off
 
 If you use Apache2 you have to add few lines to your `.htaccess`, in case of nginx just add dedicated
 lines to web app configuration.
+Make sure that those lines precede any other rewrite rule.
+The `mod_rewrite` module in Apache2 has to be installed and enabled.
 
 In order to obtain your configuration options just use the console
 

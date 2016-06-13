@@ -25,7 +25,7 @@ EOF
         $container = $this->getContainer();
 
         $output->writeln(<<<EOF
-Open your .htaccess file and paste those lines:
+Open your .htaccess file and paste those lines before any other rewrite rule:
 
     RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.hard_lock")} -f
     RewriteCond %{SCRIPT_FILENAME} !{$container->getParameter("maintenance.hard_lock")}
