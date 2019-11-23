@@ -10,7 +10,7 @@ class SoftLockListenerTest extends TestCase
     private $event;
     private $requestStack;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->event = $this->getMockBuilder('Symfony\Component\HttpKernel\Event\GetResponseEvent')
             ->disableOriginalConstructor()

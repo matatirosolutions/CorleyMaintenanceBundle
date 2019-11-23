@@ -8,7 +8,7 @@ class RunnerTest extends TestCase
 {
     private $strategy;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->strategy = $this->createMock("Corley\\MaintenanceBundle\\Maintenance\\Strategy\\BaseStrategy");
     }

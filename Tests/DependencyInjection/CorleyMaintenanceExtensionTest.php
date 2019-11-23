@@ -8,12 +8,13 @@ use Corley\MaintenanceBundle\DependencyInjection\CorleyMaintenanceExtension;
 
 class CorleyMaintenanceExtensionTest extends TestCase
 {
+    /** @var ContainerBuilder */
     private $container;
-
+    private $kernel;
     private $symlink;
     private $copy;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->kernel = $this->createMock('Symfony\\Component\\HttpKernel\\KernelInterface');
 
