@@ -16,7 +16,7 @@ class SoftLockListenerTest extends \PHPUnit_Framework_TestCase
             ->setMethods(null)
             ->getMock();
 
-        $this->requestStack = $this->getMock(
+        $this->requestStack = $this->createMock(
             'Symfony\\Component\\HttpFoundation\\RequestStack',
             array('getCurrentRequest')
         );

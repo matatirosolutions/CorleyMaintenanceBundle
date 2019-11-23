@@ -9,7 +9,7 @@ class RunnerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->strategy = $this->getMock("Corley\\MaintenanceBundle\\Maintenance\\Strategy\\BaseStrategy");
+        $this->strategy = $this->createMock("Corley\\MaintenanceBundle\\Maintenance\\Strategy\\BaseStrategy");
     }
 
     public function testBasePutFile()
