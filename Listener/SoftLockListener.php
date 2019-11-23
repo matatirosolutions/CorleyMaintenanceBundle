@@ -3,6 +3,7 @@ namespace Corley\MaintenanceBundle\Listener;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class SoftLockListener
 {
@@ -31,7 +32,14 @@ class SoftLockListener
         $this->requestStack = $requestStack;
     }
 
-    public function onKernelRequest(GetResponseEvent $event)
+    /**
+     * @param GetResponseEvent|RequestEvent $event
+     *
+     * Note: To enable support for all currently supported versions of Symfony we can't
+     * typehint the event since the event class changed between SF 4.4 and 5.0. As Nicolas
+     * explained it the class isn't deprecated in 4.4 because the replacement relies on it.
+     */
+    public function onKernelRequest($event)
     {
         if ($this->isUnderMaintenance()) {
             $response = new Response();
