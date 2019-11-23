@@ -1,12 +1,12 @@
 <?php
 namespace Corley\MaintenanceBundle\Tests\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use \PHPUnit\Framework\TestCase;
 
 use Corley\MaintenanceBundle\DependencyInjection\CorleyMaintenanceExtension;
 
-class CorleyMaintenanceExtensionTest extends \PHPUnit_Framework_TestCase
+class CorleyMaintenanceExtensionTest extends TestCase
 {
     private $container;
 

@@ -1,9 +1,10 @@
 <?php
 namespace Corley\MaintenanceBundle\Tests\Maintenance;
 
+use \PHPUnit\Framework\TestCase;
 use Corley\MaintenanceBundle\Maintenance\Runner;
 
-class RunnerTest extends \PHPUnit_Framework_TestCase
+class RunnerTest extends TestCase
 {
     private $strategy;
 

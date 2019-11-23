@@ -2,9 +2,10 @@
 namespace Corley\MaintenanceBundle\Test\Listener;
 
 use Symfony\Component\HttpFoundation\Request;
+use \PHPUnit\Framework\TestCase;
 use Corley\MaintenanceBundle\Listener\SoftLockListener;
 
-class SoftLockListenerTest extends \PHPUnit_Framework_TestCase
+class SoftLockListenerTest extends TestCase
 {
     private $event;
     private $requestStack;

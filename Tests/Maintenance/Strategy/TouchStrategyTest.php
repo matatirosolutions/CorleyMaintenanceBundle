@@ -2,10 +2,10 @@
 namespace Corley\MaintenanceBundle\Tests\Maintenance\Strategy;
 
 use org\bovigo\vfs\vfsStream;
-
+use \PHPUnit\Framework\TestCase;
 use Corley\MaintenanceBundle\Maintenance\Strategy\TouchStrategy as Strategy;
 
-class TouchStrategyTest extends \PHPUnit_Framework_TestCase
+class TouchStrategyTest extends TestCase
 {
     private $root;
 
