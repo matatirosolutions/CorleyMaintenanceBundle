@@ -24,10 +24,11 @@ class MaintenanceCommandTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     *
      */
     public function testMaintenanceWantsOnOff()
     {
+        $this->expectException('InvalidArgumentException');
         $commandTester = $this->prepareCommand();
         $commandTester->execute(
             array(
