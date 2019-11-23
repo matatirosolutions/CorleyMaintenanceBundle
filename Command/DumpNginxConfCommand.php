@@ -25,7 +25,7 @@ EOF
         $container = $this->getContainer();
 
         $output->writeln(<<<EOF
-Open your site configuration file and paste those lines:
+Open your site configuration file and paste the following lines:
 
     location / {
         if (-f \$document_root/{$container->getParameter("maintenance.hard_lock")}) {
