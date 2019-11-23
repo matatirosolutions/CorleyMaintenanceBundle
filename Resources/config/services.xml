@@ -44,6 +44,16 @@
             <tag name="console.command" />
         </service>
 
+        <service id="corley_maintenance.command.dump_apache_command"
+                 class="Corley\MaintenanceBundle\Command\DumpApacheConfCommand">
+            <tag name="console.command" />
+        </service>
+
+        <service id="corley_maintenance.command.dump_nginx_command"
+                 class="Corley\MaintenanceBundle\Command\DumpNginxConfCommand">
+            <tag name="console.command" />
+        </service>
+
         <service id="corley_maintenance.soft_lock" class="Corley\MaintenanceBundle\Listener\SoftLockListener">
             <argument>%maintenance.page%</argument>
             <argument>%maintenance.web%/%maintenance.soft_lock%</argument>
