@@ -8,6 +8,8 @@ class Runner
     private $publicFolder;
     private $sourceFile;
 
+    private $symlink;
+    /** @var BaseStrategy */
     private $strategy;
     private $destinationFileName;
 
