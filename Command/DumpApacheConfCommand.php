@@ -25,7 +25,7 @@ EOF
         $container = $this->getContainer();
 
         $output->writeln(<<<EOF
-Open your .htaccess file and paste those lines before any other rewrite rule:
+Open your .htaccess file and paste the following lines before any other rewrite rules:
 
     <IfModule mod_rewrite.c>
       RewriteEngine on

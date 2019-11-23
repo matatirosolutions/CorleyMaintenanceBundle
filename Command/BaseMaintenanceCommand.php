@@ -43,7 +43,6 @@ EOF
         }
 
         $this->runner->enableMaintenance(($status == 'off') ? false : true);
-
         return 0;
     }
 
