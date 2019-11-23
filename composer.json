@@ -9,11 +9,11 @@
     },
     "target-dir": "Corley/MaintenanceBundle",
     "require": {
-        "php": ">=7.1",
-        "symfony/framework-bundle": ">=2.6",
-        "symfony/security-bundle": ">=2.6",
-        "symfony/console": ">=2.6",
-        "symfony/dependency-injection": ">=2.6"
+        "php": ">=7.2",
+        "symfony/framework-bundle": "^3.4|^4.2",
+        "symfony/security-bundle": "^3.4|^4.2",
+        "symfony/console": "^3.4|^4.2",
+        "symfony/dependency-injection": "^3.4|^4.2"
     },
     "require-dev": {
         "mikey179/vfsstream": "1.*",
