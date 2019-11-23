@@ -9,13 +9,23 @@ Those conditions will ensure that a load balancer cut an instance off during a m
 
 ## Install
 
-In your `composer.json` add the requirement
+In `composer.json` add the requirement. The current version requires at least PHP 7.2 and a supported version of Symfony (3.4, 4.2, 4.3, 4.4 and 5.0). 
 
 ```json
 "require": {
-    "corley/maintenance-bundle": "0.2.*"
+    "corley/maintenance-bundle": "^0.3"
 }
 ```
+
+To support earlier versions e.g. SF 2.x, 3.3, 4.1 etc or PHP less than 7.2 you will need to use:
+
+```json
+"require": {
+    "corley/maintenance-bundle": "^0.2"
+}
+```
+This version can also be used for more recent Symfony versions, e.g. with 3.4 or 4.4 but is not compatible with Symfony 5 - only `0.3` can be used there because of changes to the event structure in Symfony 5.0.
+
 
 For pre-Flex applications register the bundle in `AppKernel.php`
 
