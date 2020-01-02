@@ -1,12 +1,25 @@
 <?php
 namespace Corley\MaintenanceBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class DumpApacheConfCommand extends ContainerAwareCommand
+class DumpApacheConfCommand extends Command
 {
+    protected $hardLock;
+
+    /**
+     * DumpApacheConfCommand constructor.
+     * @param string $hardLock
+     */
+    public function __construct(string $hardLock)
+    {
+        parent::__construct(null);
+        $this->hardLock = $hardLock;
+    }
+
+
     protected function configure()
     {
         $this
@@ -22,18 +35,16 @@ EOF
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $container = $this->getContainer();
-
         $output->writeln(<<<EOF
 Open your .htaccess file and paste the following lines before any other rewrite rules:
 
     <IfModule mod_rewrite.c>
       RewriteEngine on
-      RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.hard_lock")} -f
-      RewriteCond %{SCRIPT_FILENAME} !{$container->getParameter("maintenance.hard_lock")}
-      RewriteRule ^.*$ /{$container->getParameter("maintenance.hard_lock")} [R=503,L]
+      RewriteCond %{DOCUMENT_ROOT}/{$this->hardLock} -f
+      RewriteCond %{SCRIPT_FILENAME} !{$this->hardLock}
+      RewriteRule ^.*$ /{$this->hardLock} [R=503,L]
 
-      RewriteCond %{DOCUMENT_ROOT}/{$container->getParameter("maintenance.hard_lock")} -f
+      RewriteCond %{DOCUMENT_ROOT}/{$this->hardLock} -f
       RewriteRule ^(.*)$ - [env=MAINTENANCE:1]
 
       <IfModule mod_headers.c>
@@ -42,9 +53,11 @@ Open your .htaccess file and paste the following lines before any other rewrite 
       </IfModule>
     </IfModule>
 
-    ErrorDocument 503 /{$container->getParameter("maintenance.hard_lock")}
+    ErrorDocument 503 /{$this->hardLock}
 
 EOF
         );
+
+        return 0;
     }
 }
