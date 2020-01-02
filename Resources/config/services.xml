@@ -46,11 +46,13 @@
 
         <service id="corley_maintenance.command.dump_apache_command"
                  class="Corley\MaintenanceBundle\Command\DumpApacheConfCommand">
+            <argument>%maintenance.hard_lock%</argument>
             <tag name="console.command" />
         </service>
 
         <service id="corley_maintenance.command.dump_nginx_command"
                  class="Corley\MaintenanceBundle\Command\DumpNginxConfCommand">
+            <argument>%maintenance.hard_lock%</argument>
             <tag name="console.command" />
         </service>
 

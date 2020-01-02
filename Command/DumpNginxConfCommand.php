@@ -1,12 +1,25 @@
 <?php
 namespace Corley\MaintenanceBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class DumpNginxConfCommand extends ContainerAwareCommand
+class DumpNginxConfCommand extends Command
 {
+    protected $hardLock;
+
+    /**
+     * DumpNginxConfCommand constructor.
+     * @param $hardLock
+     */
+    public function __construct($hardLock)
+    {
+        parent::__construct(null);
+        $this->hardLock = $hardLock;
+    }
+
+
     protected function configure()
     {
         $this
@@ -22,13 +35,11 @@ EOF
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $container = $this->getContainer();
-
         $output->writeln(<<<EOF
 Open your site configuration file and paste the following lines:
 
     location / {
-        if (-f \$document_root/{$container->getParameter("maintenance.hard_lock")}) {
+        if (-f \$document_root/{$this->hardLock}) {
             return 503;
         }
 
@@ -39,10 +50,12 @@ Open your site configuration file and paste the following lines:
     location @maintenance {
         expires           0;
         add_header        Cache-Control private;
-        rewrite ^(.*)$ /{$container->getParameter("maintenance.hard_lock")} break;
+        rewrite ^(.*)$ /{$this->hardLock} break;
     }
 
 EOF
         );
+
+        return 0;
     }
 }
