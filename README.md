@@ -110,7 +110,7 @@ Options:
 * `hard_lock` Is the name used in order to lock the website (default: `hard.lock`)
 * `web` public folder (default `web` folder, for Flex projects you will need to configure this for your public folder, i.e. `%kernel.project_dir%/public`)
 * `soft_lock` Is the name used in order to lock the website (using app layer)
-* `whilelist` Authorized connections [soft-lock only]
+* `whitelist` Authorized connections [soft-lock only]
   * `paths` A list of paths that skip the maintenance lock
   * `ips` A list of ips that skip the maintenance lock
 
