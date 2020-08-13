@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode("page")->defaultValue(__DIR__ . "/../Resources/views/maintenance.html")->end()
-                ->scalarNode("web")->defaultValue('%kernel.root_dir%/../web')->end()
+                ->scalarNode("web")->defaultValue('%kernel.project_dir%/public')->end()
                 ->scalarNode("soft_lock")->defaultValue('soft.lock')->end()
                 ->scalarNode("hard_lock")->defaultValue('hard.lock')->end()
                 ->booleanNode("symlink")->defaultFalse()->end()
