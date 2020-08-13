@@ -111,7 +111,7 @@ Options:
 * `hard_lock` Is the name used in order to lock the website (default: `hard.lock`)
 * `web` public folder. Prior to 0.4 this defaulted to `%kernel.root_dir%/../web`, since 0.4.0 the new default is `%kernel.project_dir%/public` as the `%kernel.root_dir%` parameter has been deprecated since Symfony 4.2, and was removed in 5.1. If your project's public folder is still `web` (or some other folder) set this in the config file.
 * `soft_lock` Is the name used in order to lock the website (using app layer)
-* `whilelist` Authorized connections [soft-lock only]
+* `whitelist` Authorized connections [soft-lock only]
   * `paths` A list of paths that skip the maintenance lock
   * `ips` A list of ips that skip the maintenance lock
 
