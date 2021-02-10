@@ -114,6 +114,7 @@ Options:
 * `whitelist` Authorized connections [soft-lock only]
   * `paths` A list of paths that skip the maintenance lock
   * `ips` A list of ips that skip the maintenance lock
+* `status_code` The HTTP code used for the maintenance page (default: `503`)
 
 
 ## Soft locking
@@ -133,3 +134,8 @@ Restore the application status
 ```shell
 bin/console corley:maintenance:soft-lock off
 ```
+
+
+## Using with a Load Balancer or Reverse Proxy
+
+Some load balancers (eg. HAProxy) or reverse proxy (eg. Varnish) will monitor the status code of the http response to stop forwarding traffic to your nodes. If you are using a load balancer or a reverse proxy you may want to change the status code of the maintenance page to 200 so your users will still see something. You may change the response code of the status page from 503 by changing the `status_code` configuration.

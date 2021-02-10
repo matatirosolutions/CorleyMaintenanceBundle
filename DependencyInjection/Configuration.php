@@ -16,7 +16,7 @@ class Configuration implements ConfigurationInterface
             $treeBuilder = new TreeBuilder();
             $rootNode = $treeBuilder->root('corley_maintenance');
         }
-        
+
         $rootNode
             ->children()
                 ->scalarNode("page")->defaultValue(__DIR__ . "/../Resources/views/maintenance.html")->end()
@@ -24,6 +24,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode("soft_lock")->defaultValue('soft.lock')->end()
                 ->scalarNode("hard_lock")->defaultValue('hard.lock')->end()
                 ->booleanNode("symlink")->defaultFalse()->end()
+                ->integerNode("status_code")->defaultValue(503)->min(100)->max(527)->end()
                 ->arrayNode("whitelist")
                     ->addDefaultsIfNotSet()
                     ->children()

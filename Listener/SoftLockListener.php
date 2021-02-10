@@ -4,6 +4,7 @@ namespace Corley\MaintenanceBundle\Listener;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 class SoftLockListener
 {
@@ -13,12 +14,14 @@ class SoftLockListener
 
     private $whitePaths;
     private $whiteIps;
+    private $httpStatus;
 
-    public function __construct($maintenancePage, $maintenanceLock, array $whitePaths, array $whiteIps)
+    public function __construct($maintenancePage, $maintenanceLock, array $whitePaths, array $whiteIps, int $httpStatus = 503)
     {
         $this->maintenancePage = $maintenancePage;
         $this->lock = file_exists($maintenanceLock);
         $this->whiteIps = $whiteIps;
+        $this->httpStatus = $httpStatus;
 
         array_walk($whitePaths, function(&$elem) {
             $elem = "/" . str_replace("/", "\\/", $elem) . "/";
@@ -27,7 +30,7 @@ class SoftLockListener
         $this->whitePaths = array_replace(array("/^\/_/"), $whitePaths);
     }
 
-    public function setRequestStack($requestStack)
+    public function setRequestStack($requestStack): void
     {
         $this->requestStack = $requestStack;
     }
@@ -43,7 +46,7 @@ class SoftLockListener
     {
         if ($this->isUnderMaintenance()) {
             $response = new Response();
-            $response->setStatusCode(503);
+            $response->setStatusCode($this->httpStatus);
             $response->setContent(file_get_contents($this->maintenancePage));
 
             $event->setResponse($response);
@@ -59,14 +62,9 @@ class SoftLockListener
 
     private function isIpNotAuthorized()
     {
-        $currentIp = $this->requestStack->getCurrentRequest()->getClientIp();
-        foreach ($this->whiteIps as $allowedIp) {
-            if ($currentIp == $allowedIp) {
-                return false;
-            }
-        }
+        $requestIp = $this->requestStack->getCurrentRequest()->getClientIp();
 
-        return true;
+        return !IpUtils::checkIp($requestIp, $this->whiteIps);
     }
 
     private function isPathUnderMaintenance($path)

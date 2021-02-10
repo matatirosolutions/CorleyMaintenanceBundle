@@ -112,5 +112,24 @@ class SoftLockListenerTest extends TestCase
         $this->assertNull($this->event->getResponse());
         $this->assertFalse($this->event->isPropagationStopped());
     }
+
+    public function testStatusCode()
+    {
+        $this->requestStack
+            ->expects($this->any())
+            ->method('getCurrentRequest')
+            ->will($this->returnValue(
+                Request::create('/the/app/path', "GET", array(), array(), array(), array('REMOTE_ADDR' => '127.0.0.1'))
+            ));
+
+        $listener = new SoftLockListener(__FILE__, __FILE__, array(), array(), 200);
+        $listener->setRequestStack($this->requestStack);
+
+        $listener->onKernelRequest($this->event);
+
+        $this->assertNotNull($this->event->getResponse());
+        $this->assertTrue($this->event->isPropagationStopped());
+        $this->assertEquals(200, $this->event->getResponse()->getStatusCode());
+    }
 }
 
