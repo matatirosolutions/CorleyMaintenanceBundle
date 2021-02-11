@@ -1,5 +1,5 @@
 {
-    "name": "corley/maintenance-bundle",
+    "name": "nicolassing/maintenance-bundle",
     "type": "symfony-bundle",
     "description": "Corley Maintenance Bundle",
     "keywords": ["Maintenance management", "503", "apache2", "apache", "nginx", "maintenance"],
