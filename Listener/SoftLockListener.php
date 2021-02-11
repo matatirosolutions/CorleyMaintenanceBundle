@@ -1,6 +1,7 @@
 <?php
 namespace Corley\MaintenanceBundle\Listener;
 
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -8,6 +9,9 @@ use Symfony\Component\HttpFoundation\IpUtils;
 
 class SoftLockListener
 {
+    /**
+     * @var RequestStack
+     */
     private $requestStack;
     private $maintenancePage;
     private $lock;
@@ -62,9 +66,16 @@ class SoftLockListener
 
     private function isIpNotAuthorized()
     {
-        $requestIp = $this->requestStack->getCurrentRequest()->getClientIp();
+        $currentRequest = $this->requestStack->getCurrentRequest();
 
-        return !IpUtils::checkIp($requestIp, $this->whiteIps);
+        if (null === $currentRequest) {
+            return true;
+        }
+
+        $clientIps = $currentRequest->getClientIps();
+        $clientIp = end($clientIps);
+
+        return !IpUtils::checkIp($clientIp, $this->whiteIps);
     }
 
     private function isPathUnderMaintenance($path)
