@@ -9,7 +9,17 @@ Those conditions will ensure that a load balancer cut an instance off during a m
 
 ## Install
 
-In `composer.json` add the requirement. The current version requires at least PHP 7.2 and a supported version of Symfony (3.4, 4.4 and 5.1). 
+
+In `composer.json` add the requirement. 
+
+The current version requires at least PHP 8.1 and a supported (as at time of release) version of Symfony (4.4, 5.4, 6.0 and 6.1).
+```json
+"require": {
+    "corley/maintenance-bundle": "^0.4"
+}
+```
+
+To support earlier versions e.g. SF 3.4, 4.2, 4.3, 5.1 etc or PHP greater than 7.2 but less than 8.1 you will need to use: 
 
 ```json
 "require": {
@@ -17,7 +27,7 @@ In `composer.json` add the requirement. The current version requires at least PH
 }
 ```
 
-To support earlier versions e.g. SF 2.x, 3.3, 4.1 etc or PHP less than 7.2 you will need to use:
+To support earlier versions still, e.g. SF 2.x, 3.3, 4.1 etc or PHP less than 7.2 you will need to use:
 
 ```json
 "require": {
