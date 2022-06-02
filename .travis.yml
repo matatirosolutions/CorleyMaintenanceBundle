@@ -6,10 +6,8 @@ php:
 
 env:
   - SYMFONY_VERSION="~3.4"
-  - SYMFONY_VERSION="~4.2"
-  - SYMFONY_VERSION="~4.3"
   - SYMFONY_VERSION="~4.4"
-  - SYMFONY_VERSION="~5.0"
+  - SYMFONY_VERSION="~5.4"
 
 before_script:
   - composer selfupdate
