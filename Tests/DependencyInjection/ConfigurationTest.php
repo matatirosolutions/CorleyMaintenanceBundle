@@ -33,7 +33,7 @@ class ConfigurationTest extends TestCase
                     'symlink' => false,
                     'soft_lock' => 'soft.lock',
                     'hard_lock' => 'hard.lock',
-                    'web' => '%kernel.root_dir%/../web',
+                    'web' => '%kernel.project_dir%/public',
                     'whitelist' => array(
                         'paths' => array(),
                         'ips' => array()
@@ -47,7 +47,7 @@ class ConfigurationTest extends TestCase
                     'symlink' => true,
                     'soft_lock' => 'soft.lock',
                     'hard_lock' => 'hard.lock',
-                    'web' => '%kernel.root_dir%/../web',
+                    'web' => '%kernel.project_dir%/public',
                     'whitelist' => array(
                         'paths' => array('/_'),
                         'ips' => array()

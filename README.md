@@ -9,6 +9,7 @@ Those conditions will ensure that a load balancer cut an instance off during a m
 
 ## Install
 
+
 In `composer.json` add the requirement. 
 
 The current version requires at least PHP 8.1 and a supported (as at time of release) version of Symfony (4.4, 5.4, 6.0 and 6.1).
@@ -18,11 +19,11 @@ The current version requires at least PHP 8.1 and a supported (as at time of rel
 }
 ```
 
-To support earlier versions still, e.g. SF 3.4, 4.2, 4.3, 5.1 etc or PHP greater than 7.2 but less than 8.1 you will need to use: 
+To support earlier versions e.g. SF 3.4, 4.2, 4.3, 5.1 etc or PHP greater than 7.2 but less than 8.1 you will need to use: 
 
 ```json
 "require": {
-    "corley/maintenance-bundle": "^0.3"
+    "corley/maintenance-bundle": "^0.4"
 }
 ```
 
@@ -33,7 +34,7 @@ To support earlier versions still, e.g. SF 2.x, 3.3, 4.1 etc or PHP less than 7.
     "corley/maintenance-bundle": "^0.2"
 }
 ```
-This version can also be used for more recent Symfony versions, e.g. with 3.4 or 4.4 but is not compatible with Symfony 5 - only `0.3` can be used there because of changes to the event structure in Symfony 5.0.
+This version can also be used for more recent Symfony versions, e.g. with 3.4 or 4.4 but is not compatible with Symfony 5 - only `0.3` or greater can be used there because of changes to the event structure in Symfony 5.0.
 
 
 For pre-Flex applications register the bundle in `AppKernel.php`
@@ -101,6 +102,7 @@ corley_maintenance:
     page: %kernel.root_dir%/../web/maintenance.dist.html
     hard_lock: lock.html
     symlink: false
+    web: %kernel.root_dir%/../web
 ```
 
 For Flex projects
@@ -117,7 +119,7 @@ Options:
 * `page` is the original maintenance page (default: `vendor/corley/maintenance-bundle/Corley/MaintenanceBundle/Resources/views/maintenance.html`)
 * `symlink` If you want to use symlinks instead hardcopy strategy (default: hardcopy)
 * `hard_lock` Is the name used in order to lock the website (default: `hard.lock`)
-* `web` public folder (default `web` folder, for Flex projects you will need to configure this for your public folder, i.e. `%kernel.project_dir%/public`)
+* `web` public folder. Prior to 0.4 this defaulted to `%kernel.root_dir%/../web`, since 0.4.0 the new default is `%kernel.project_dir%/public` as the `%kernel.root_dir%` parameter has been deprecated since Symfony 4.2, and was removed in 5.1. If your project's public folder is still `web` (or some other folder) set this in the config file.
 * `soft_lock` Is the name used in order to lock the website (using app layer)
 * `whitelist` Authorized connections [soft-lock only]
   * `paths` A list of paths that skip the maintenance lock
