@@ -5,7 +5,7 @@ on: [ push ]
 jobs:
   test:
     name: Test - php${{ matrix.php }} - symfony:${{ matrix.symfony-version }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     env:
       SYMFONY_REQUIRE: ${{ matrix.symfony-version }}
     strategy:
@@ -16,10 +16,8 @@ jobs:
           - '7.4'
         symfony-version:
           - '~3.4'
-          - "~4.2"
-          - "~4.3"
           - "~4.4"
-          - "~5.0"
+          - "~5.4"
 
     steps:
       - uses: actions/checkout@v2
