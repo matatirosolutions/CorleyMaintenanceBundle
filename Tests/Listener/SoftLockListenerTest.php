@@ -1,5 +1,5 @@
 <?php
-namespace Corley\MaintenanceBundle\Test\Listener;
+namespace Corley\MaintenanceBundle\Tests\Listener;
 
 use Symfony\Component\HttpFoundation\Request;
 use \PHPUnit\Framework\TestCase;
